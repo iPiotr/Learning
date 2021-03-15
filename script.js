@@ -293,54 +293,85 @@
 // tesla.accelerate();
 
 
-class PersonCl {
-    constructor(fullName, birthYear) {
-        this.fullName = fullName;
-        this.birthYear = birthYear;
-    }
+// class PersonCl {
+//     constructor(fullName, birthYear) {
+//         this.fullName = fullName;
+//         this.birthYear = birthYear;
+//     }
 
+//     calcAge() {
+//         console.log(2021 - this.birthYear);
+//     }
+
+//     greet() {
+//         console.log(`Hey ${this.firstName}`);
+//     }
+
+//     get age() {
+//         return 2021 - this.birthYear;
+//     }
+
+//     set firstName(name) {
+//         if(name.includes(' ')) this._fullName = name;
+//         else alert(`${name} is not a full name!`)
+//     }
+
+//     get firstName() {
+//         return this._fullName;
+//     }
+
+//     static hey() {
+//         console.log('hey');
+//     }
+// };
+
+// class StudentCl extends PersonCl {
+//     constructor(fullName, birthYear, course) {
+
+//         super(fullName, birthYear);
+//         this.course = course;
+//     };
+
+//     introduce() {
+//         console.log(`My name is ${this.fullName} and I study ${this.course}`);
+//     };
+
+//     calcAge() {
+//         console.log(`I'm ${2021 - this.birthYear} years old, but I feel more like ${2021 - this.birthYear + 10}`);
+//     }
+// };
+
+// const martha = new StudentCl('Marta Jonas', 2002, 'Computer Science');
+// martha.introduce();
+// martha.calcAge();
+
+const PersonProto = {
     calcAge() {
         console.log(2021 - this.birthYear);
-    }
+    },
 
-    greet() {
-        console.log(`Hey ${this.firstName}`);
-    }
-
-    get age() {
-        return 2021 - this.birthYear;
-    }
-
-    set firstName(name) {
-        if(name.includes(' ')) this._fullName = name;
-        else alert(`${name} is not a full name!`)
-    }
-
-    get firstName() {
-        return this._fullName;
-    }
-
-    static hey() {
-        console.log('hey');
-    }
+    init(firstName, birthYear) {
+        this.firstName = firstName;
+        this.birthYear = birthYear;
+    },
 };
 
-class StudentCl extends PersonCl {
-    constructor(fullName, birthYear, course) {
+const steven = Object.create(PersonProto);
 
-        super(fullName, birthYear);
-        this.course = course;
-    };
-
-    introduce() {
-        console.log(`My name is ${this.fullName} and I study ${this.course}`);
-    };
-
-    calcAge() {
-        console.log(`I'm ${2021 - this.birthYear} years old, but I feel more like ${2021 - this.birthYear + 10}`);
-    }
+const StudentProto = Object.create(PersonProto);
+StudentProto.init = function(firstName, birthYear, course) {
+    PersonProto.init.call(this, firstName, birthYear);
+    this.course = course;
 };
 
-const martha = new StudentCl('Marta Jonas', 2002, 'Computer Science');
-martha.introduce();
-martha.calcAge();
+StudentProto.introduce = function() {
+    console.log(`${this.firstName} I study ${this.course}`);
+};
+
+const jay = Object.create(StudentProto);
+
+jay.init('Jay', 2000, 'Informatic');
+jay.introduce();
+jay.calcAge();
+
+

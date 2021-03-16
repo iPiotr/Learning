@@ -345,33 +345,31 @@
 // martha.introduce();
 // martha.calcAge();
 
-const PersonProto = {
-    calcAge() {
-        console.log(2021 - this.birthYear);
-    },
+// const PersonProto = {
+//     calcAge() {
+//         console.log(2021 - this.birthYear);
+//     },
 
-    init(firstName, birthYear) {
-        this.firstName = firstName;
-        this.birthYear = birthYear;
-    },
-};
+//     init(firstName, birthYear) {
+//         this.firstName = firstName;
+//         this.birthYear = birthYear;
+//     },
+// };
 
-const steven = Object.create(PersonProto);
+// const steven = Object.create(PersonProto);
 
-const StudentProto = Object.create(PersonProto);
-StudentProto.init = function(firstName, birthYear, course) {
-    PersonProto.init.call(this, firstName, birthYear);
-    this.course = course;
-};
+// const StudentProto = Object.create(PersonProto);
+// StudentProto.init = function(firstName, birthYear, course) {
+//     PersonProto.init.call(this, firstName, birthYear);
+//     this.course = course;
+// };
 
-StudentProto.introduce = function() {
-    console.log(`${this.firstName} I study ${this.course}`);
-};
+// StudentProto.introduce = function() {
+//     console.log(`${this.firstName} I study ${this.course}`);
+// };
 
-const jay = Object.create(StudentProto);
+// const jay = Object.create(StudentProto);
 
-jay.init('Jay', 2000, 'Informatic');
-jay.introduce();
-jay.calcAge();
-
-
+// jay.init('Jay', 2000, 'Informatic');
+// jay.introduce();
+// jay.calcAge();

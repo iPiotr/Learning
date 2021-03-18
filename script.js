@@ -373,3 +373,122 @@
 // jay.init('Jay', 2000, 'Informatic');
 // jay.introduce();
 // jay.calcAge();
+
+
+
+// class Account {
+//     locale = navigator.language;
+    
+    
+//     _movments = [];
+
+
+
+//     constructor(owner, currency, pin) {
+//         this.owner = owner;
+//         this.currency = currency;
+//         this._pin = pin;
+//         // this._movments = [];
+//         // this.locale = navigator.language;
+
+//         console.log(`Thanks for opening an account, ${owner}`);
+//     }
+
+//     getMovements() {
+//         return this._movments;
+//     }
+
+//     deposit(val) {
+//         this._movments.push(val);
+//         return this;
+//     }
+
+//     withdraw(val) {
+//         this.deposit(-val);
+//         return this;
+//     }
+
+//     _approveLoan(val) {
+//         return true;
+//         return this;
+//     }
+
+//     requestLoan(val) {
+//         if(this._approveLoan(val)) {
+//             this.deposit(val);
+//             console.log(`Loan approved`);
+//             return this;
+//         }
+//     }
+
+//     static helper() {
+//         console.log('Helper');
+//     }
+    
+// }
+
+// const acc1 = new Account('Jonas', 'EUR', 1111, []);
+
+// acc1.deposit(250);
+// acc1.withdraw(140);
+// acc1.requestLoan(1000);
+// acc1._approveLoan(1000);
+// console.log(acc1.getMovements());
+  
+
+// Account.helper();
+
+// acc1.deposit(300).deposit(500).withdraw(35).requestLoan(25000).withdraw(4000);
+// console.log(acc1.getMovements());
+
+class CarCl {
+        constructor(mark, speed) {
+            this.mark = mark;
+            this.speed = speed;
+        }
+    
+        accelerate() {
+            this.speed += 10;
+            console.log(`${this.mark} going at ${this.speed} km/h`);
+        }
+    
+        break() {
+            this.speed -= 5;
+            console.log(`${this.mark} going at ${this.speed} km/h`);
+            return this;
+        }
+    
+        get speedUS() {
+            return this.speed / 1.6;
+        }
+    
+        set speedUS(speed) {
+            this.speed = speed * 1.6;
+        }
+}
+
+class EVCL extends CarCl {
+
+    constructor(make, speed, charge) {
+        super(make, speed);
+        this.charge = charge;
+    };
+
+    chargeBattery(chargeTo) {
+        this.charge = chargeTo;
+        return this;
+    }
+
+    accelerate() {
+        this.speed += 20;
+        this.charge--;
+        console.log(`${this.mark} is going at ${this.speed} km/h, with a charge of ${this.charge}`);
+        return this;
+    }
+};
+
+const rivian = new EVCL('Revian', 120, 23);
+console.log(rivian);
+rivian.accelerate().accelerate().accelerate().break().chargeBattery(50).accelerate();
+
+console.log(rivian.speedUS);
